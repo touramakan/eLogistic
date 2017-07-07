@@ -3,12 +3,12 @@
 	xmlns:th="http://www.thymeleaf.org"
 	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
 <head>
-<title>Login page</title>
+<title th:text="#{login.page}">Login page</title>
 <meta charset="utf-8" />
 <link rel="stylesheet" href="/css/main.css" th:href="@{/css/main.css}" />
 </head>
 <body>
-	<h1>Login page</h1>
+	<h1 th:text="#{login.header}">Login page</h1>
 	<p>Example user: user / password</p>
 	<p th:if="${loginError}" class="error">Wrong user or password</p>
 	<form th:action="@{/login}" method="post">

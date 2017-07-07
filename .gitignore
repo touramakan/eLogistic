@@ -1,27 +1,9 @@
-target/
-!.mvn/wrapper/maven-wrapper.jar
-
-### STS ###
-.apt_generated
 .classpath
-.factorypath
+.idea/
+.mvn/
 .project
-.settings
-.springBeans
-
-### IntelliJ IDEA ###
-.idea
-*.iws
-*.iml
-*.ipr
-
-### NetBeans ###
-nbproject/private/
-build/
-nbbuild/
-dist/
-nbdist/
-.nb-gradle/
-.mvn
+.settings/
+eLogistic.iml
 mvnw
 mvnw.cmd
+target/
