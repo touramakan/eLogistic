@@ -5,19 +5,34 @@ import org.springframework.security.config.annotation.authentication.builders.Au
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+
+import net.fofanaconsulting.eLogistic.service.UserDetailsServiceImpl;
 
 @EnableWebSecurity
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
-	@Override
-	protected void configure(HttpSecurity http) throws Exception {
-		http.authorizeRequests().antMatchers("/css/**", "/index").permitAll().antMatchers("/user/**").hasAnyRole("USER")
-				.and().formLogin().loginPage("/login").failureUrl("/login-error");
-	}
 
-	@Autowired
-	public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
-		auth.inMemoryAuthentication().withUser("user").password("password").roles("USER");
-	}
+  private final UserDetailsServiceImpl userDetailsServiceImpl;
+  private final BCryptPasswordEncoder bCryptPasswordEncoder;
+
+  @Autowired
+  public SecurityConfig(UserDetailsServiceImpl userDetailsServiceImpl,
+      BCryptPasswordEncoder bCryptPasswordEncoder) {
+    this.userDetailsServiceImpl = userDetailsServiceImpl;
+    this.bCryptPasswordEncoder = bCryptPasswordEncoder;
+  }
+
+  @Override
+  protected void configure(HttpSecurity http) throws Exception {
+    http.authorizeRequests().antMatchers("/css/**", "/registration").permitAll()
+        .antMatchers("/user/**").authenticated().antMatchers("/admin/**").hasAuthority("ADMIN")
+        .and().formLogin().loginPage("/login").failureUrl("/login-error");
+  }
+
+  @Autowired
+  public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
+    auth.userDetailsService(userDetailsServiceImpl).passwordEncoder(bCryptPasswordEncoder);
+  }
 
 }

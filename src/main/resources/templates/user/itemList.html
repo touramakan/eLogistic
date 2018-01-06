@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout" layout:decorator="layout"
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+<head>
+<title th:text="#{main.itemList.title}">title</title>
+</head>
+<body>
+	<h1 layout:fragment="header" th:text="#{main.itemList.header}">Item : View all</h1>
+	<div layout:fragment="content" class="container">
+		<table class="table table-bordered table-striped">
+			<thead>
+				<tr>
+					<td />
+					<td> <input type="text" th:placeholder="#{articleList.article.search}"/></td>
+				</tr>
+				<tr>
+					<td th:text="#{articleList.article.items}">Position</td>
+					<td th:text="#{articleList.article.designation}">Description</td>
+					<td th:text="#{articleList.article.quantity}">Quantity</td>
+					<td th:text="#{articleList.article.numberOfUnit}">Number</td>
+					<td th:text="#{articleList.article.unit}">Unit</td>
+					<td th:text="#{articleList.article.piecesPerUnit}">Unit</td>
+					<td th:text="#{articleList.article.change}">Change</td>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:if="${articles.empty}">
+					<td colspan="7" th:text="#{articleList.article.emptyList}">No Articles</td>
+				</tr>
+				<tr th:each="article,itrStat : ${articles}" th:class="${itrStat.even}? 'even_css_class':'odd_css_class'">
+					<td th:text="${itrStat.count}">Position</td>
+					<td th:text="${article.description}">Description</td>
+					<td th:text="${article.quantity.quantity}*${article.quantity.pieceInUnit}">Quantity</td>
+					<td th:text="${article.quantity.quantity}">Quantity</td>
+					<td th:text="${article.quantity.quantityUnit}">Unit</td>
+					<td th:text="${article.quantity.pieceInUnit}">Piece</td>
+					<td><form th:action="'/article/'+${article.id+'.html'}"
+							th:method="put">
+							<input type="submit" th:value="#{page.button.edit}" class="btn btn-link" />
+						</form></td>
+				</tr>
+			</tbody>
+		</table>
+		<a href="/bookArticle.html" target="blank">Test</a>
+		<div class="row">
+			<div class="col-md-4">
+				<a href="form.html" th:text="#{articleList.article.addNewArticle}">Add Article</a>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

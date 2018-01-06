@@ -1,13 +1,96 @@
-body {
-    font-family: sans;
-    font-size: 1em;
-}
-
 p.error {
     font-weight: bold;
     color: red;
 }
 
-div.logout {
+#brand {
+	
+}
+
+div.navbar-right {
     float: right;
+    display: inline-block;
+}
+body, html{
+	height: 100%;
+	font-family: sans;
+    font-size: 1em;
+    padding-top: 0.5%;
+    padding-bottom: 2 f ipk0px;
+    background-color: #eee;
+}
+
+.form-signin {
+    max-width: 330px;
+    padding: 15px;
+    margin: 0 auto;
+}
+
+.form-signin .form-signin-heading,
+.form-signin .checkbox {
+    margin-bottom: 10px;
+}
+
+.form-signin .checkbox {
+    font-weight: normal;
+}
+
+.form-signin .form-control {
+    position: relative;
+    height: auto;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    padding: 10px;
+    font-size: 16px;
+}
+
+.form-signin .form-control:focus {
+    z-index: 2;
+}
+
+.form-signin input {
+    margin-top: 10px;
+    border-bottom-right-radius: 0;
+    border-bottom-left-radius: 0;
+}
+
+.form-signin button {
+    margin-top: 10px;
+    width:100%;
+}
+
+.has-error {
+    color: red
+}
+a {
+    text-decoration: none;
+    color: #008CBA;
+}
+
+.navbar{
+	background: #9cbb11;
+	color: #fff;
+	padding: 15px;
+}
+ 
+.footer {
+    background-color: black;
+    color: white;
+    padding: 25px;
+}
+div.footer span a{
+	float:right;
+}
+table {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+table, th, td {
+    border: 1px solid black;
+}
+th, td {
+    padding: 5px;
+    text-align: left;
 }

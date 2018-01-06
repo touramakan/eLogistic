@@ -1,42 +1,17 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:th="http://www.thymeleaf.org"
-	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+	xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout" layout:decorator="layout">
 <head>
-<title th:text="#{main.index.title}">title</title>
-<meta charset="utf-8" />
-<link rel="stylesheet" href="/css/main.css" th:href="@{/css/main.css}" />
+<title th:text="#{main.page.title}">title</title>
 </head>
 <body>
-	<div th:fragment="logout" class="logout"
-		sec:authorize="isAuthenticated()">
-		Logged in user: <span sec:authentication="name"></span> | Roles: <span
-			sec:authentication="principal.authorities"></span>
-		<div>
-			<form action="#" th:action="@{/logout}" method="post">
-				<input type="submit" value="Logout" />
-			</form>
-		</div>
+	<h1 layout:fragment="header" th:text="#{main.index.header}">header</h1>
+	<div layout:fragment="content" class="container">
+		<p th:text="#{main.index.description}">description</p>
+		<ul>
+			<li>Go to the <a href="/user/itmeList" th:href="@{/user/itemList}">Item List</a></li>
+		</ul>
 	</div>
-	<h1 th:text="#{main.index.header}">header</h1>
-	<p th:text="#{main.index.description}">description</p>
-	<ul>
-		<li>Go to the <a href="/user/index" th:href="@{/user/index}">secured
-				pages</a></li>
-	</ul>
-	<!--
-	<table>
-		<tr>
-			<th>NAME</th>
-			<th>PRICE</th>
-			<th>IN STOCK</th>
-		</tr>
-		<tr th:each="prod,iterStat : ${prods}" th:class="${iterStat.odd}? 'odd'">
-			<td th:text="${prod.name}">Onions</td>
-			<td th:text="${prod.price}">2.41</td>
-			<td th:text="${prod.inStock}? #{true} : #{false}">yes</td>
-		</tr>
-	</table>
--->
 </body>
 </html>

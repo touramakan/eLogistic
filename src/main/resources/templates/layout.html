@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout"
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title layout:title-pattern="$LAYOUT_TITLE - $CONTENT_TITLE">Article
+	List</title>
+<link rel="stylesheet"
+	href="/webjars/bootstrap/3.3.6/css/bootstrap.min.css" />
+<link rel="stylesheet"
+	href="/webjars/bootstrap/3.3.6/css/bootstrap-theme.min.css" />
+<link rel="stylesheet" href="/css/main.css" th:href="@{/css/main.css}" />
+<link rel="stylesheet" href="/css/bootstrap.css" th:href="@{/css/bootstrap.css}" />
+<meta charset="utf-8" />
+</head>
+<body>
+	<div class="container">
+		<div class="navbar">
+			<div th:fragment="logout" class="navbar-right"
+				sec:authorize="isAuthenticated()">
+				<span th:text="#{signedIn.user}"/><span sec:authentication="name"/> | Roles: <span
+					sec:authentication="principal.authorities"/>
+				<span>
+					<a href="/logout" th:href="@{/logout}" th:text="#{signOut.text}"></a>
+				</span>
+			</div>
+			<div class="navbar-left">
+				<a class="brand" href="/" th:text="#{navbar.home}"> Home</a>
+			</div>
+		</div>
+		<h1 layout:fragment="header">Page header</h1>
+		<div layout:fragment="content">Fake content</div>
+		<div th:fragment="footer" class="footer">		
+			<span th:text="'&copy; '+${#calendars.format(#calendars.createNow(),'yyyy')}+' Fofana-Consulting'" />
+			<span><a href="/impressum.html" target="blank">Impressum</a></span>
+		</div>
+	</div>
+	<script src="/webjars/bootstrap/3.3.6/js/bootstrap.min.js" />
+</body>
+</html>

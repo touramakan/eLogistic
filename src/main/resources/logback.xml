@@ -3,7 +3,7 @@
 
 <configuration>
 
-	<property name="DEV_HOME" value="/Users/seydou/Documents/workspace/eLogistic/target/logs" />
+	<property name="DEV_HOME" value="${LOG_PATH:-${LOG_TEMP:-${java.io.tmpdir:-/tmp}}logs}" />
 
 	<appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
 		<layout class="ch.qos.logback.classic.PatternLayout">

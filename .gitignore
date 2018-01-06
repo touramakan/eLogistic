@@ -7,3 +7,4 @@ eLogistic.iml
 mvnw
 mvnw.cmd
 target/
+.*

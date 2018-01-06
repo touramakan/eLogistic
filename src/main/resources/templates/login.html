@@ -1,24 +1,23 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:th="http://www.thymeleaf.org"
-	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+	xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout" layout:decorator="layout">
 <head>
 <title th:text="#{login.page}">Login page</title>
 <meta charset="utf-8" />
 <link rel="stylesheet" href="/css/main.css" th:href="@{/css/main.css}" />
 </head>
 <body>
-	<h1 th:text="#{login.header}">Login page</h1>
-	<p>Example user: user / password</p>
-	<p th:if="${loginError}" class="error">Wrong user or password</p>
-	<form th:action="@{/login}" method="post">
-		<label for="username">Username</label>: <input type="text"
-			id="username" name="username" autofocus="autofocus" /> <br /> <label
-			for="password">Password</label>: <input type="password" id="password"
-			name="password" /> <br /> <input type="submit" value="Log in" />
+	<h1 layout:fragment="header" th:text="#{login.header}">Login page</h1>
+	<div layout:fragment="content" class="container">
+	
+	<form class="form-signin" th:action="@{/login}" method="post">
+		<p th:if="${loginError}" class="error" th:text="#{login.page.error}">Wrong user or password</p>
+		<input type="text" id="username" name="username" th:placeholder="Username" autofocus="autofocus" />
+		<input type="password" id="password" name="password" th:placeholder="Password" />
+		<input type="submit" th:value="#{page.button.submit}" class="btn btn-lg btn-primary btn-block btn-signin" />
 	</form>
-	<p>
-		<a href="/index" th:href="@{/index}">Back to home page</a>
-	</p>
+	
+	</div>
 </body>
 </html>
