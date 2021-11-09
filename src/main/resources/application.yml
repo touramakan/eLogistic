@@ -1,5 +1,6 @@
 server:
   port: 8080
+  dockerspring.data.mongodb.uri: mongodb://mongo-container:27000/test
 
 logging:
   level:

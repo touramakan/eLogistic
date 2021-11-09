@@ -1,0 +1,34 @@
+version: '2'
+services:
+  data-container:
+    container_name: data-container
+    image: mongo:latest
+    environment:
+      - MONGO_DATA_DIR=/data/db
+      - MONGO_LOG_DIR=/dev/null
+    volumes:
+      - /home/ubuntu/mongo-data:/data/db
+    ports:
+      - 27017:27017
+    networks:
+      - my-simple-net
+    command: mongod --smallfiles --logpath=/dev/null # --quiet
+  elogistic-app:
+    container_name: elogistic-app
+    build:
+        context: ../.
+        dockerfile: Dockerfile.app
+    image: elogistic-app:latest
+    expose:
+        - 8080
+    ports:
+        - 8080:8080
+    networks:
+        - my-simple-net
+    depends_on:
+        - data-container
+    logging:
+        driver: json-file
+networks:
+    my-simple-net:
+        driver: bridge
